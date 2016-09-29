@@ -1,0 +1,15 @@
+package com.jeecg.product.service;
+import com.jeecg.product.entity.ZbProductTypeMainEntity;
+import org.jeecgframework.core.common.service.CommonService;
+
+import java.io.Serializable;
+
+public interface ZbProductTypeMainServiceI extends CommonService{
+	
+ 	public void delete(ZbProductTypeMainEntity entity) throws Exception;
+ 	
+ 	public Serializable save(ZbProductTypeMainEntity entity) throws Exception;
+ 	
+ 	public void saveOrUpdate(ZbProductTypeMainEntity entity) throws Exception;
+ 	
+}

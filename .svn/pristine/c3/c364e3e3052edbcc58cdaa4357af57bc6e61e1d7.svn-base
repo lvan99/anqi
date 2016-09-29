@@ -1,0 +1,41 @@
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/context/mytags.jsp"%>
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>产品子分类表</title>
+  <t:base type="jquery,easyui,tools,DatePicker"></t:base>
+ </head>
+ <body>
+  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="div" action="zbProductTypeHController.do?doUpdate" tiptype="1" >
+				<input id="id" name="id" type="hidden" value="${zbProductTypeHPage.id }">
+				<input id="createName" name="createName" type="hidden" value="${zbProductTypeHPage.createName }">
+				<input id="createBy" name="createBy" type="hidden" value="${zbProductTypeHPage.createBy }">
+				<input id="createDate" name="createDate" type="hidden" value="${zbProductTypeHPage.createDate }">
+				<input id="updateName" name="updateName" type="hidden" value="${zbProductTypeHPage.updateName }">
+				<input id="updateBy" name="updateBy" type="hidden" value="${zbProductTypeHPage.updateBy }">
+				<input id="updateDate" name="updateDate" type="hidden" value="${zbProductTypeHPage.updateDate }">
+				<input id="sysOrgCode" name="sysOrgCode" type="hidden" value="${zbProductTypeHPage.sysOrgCode }">
+				<input id="sysCompanyCode" name="sysCompanyCode" type="hidden" value="${zbProductTypeHPage.sysCompanyCode }">
+				<input id="bpmStatus" name="bpmStatus" type="hidden" value="${zbProductTypeHPage.bpmStatus }">
+				<input id="mainType" name="mainType" type="hidden" value="${zbProductTypeHPage.mainType }">
+		<fieldset class="step">
+			<div class="form">
+		      <label class="Validform_label">编码:</label>
+		     	 <input id="code" name="code" type="text" style="width: 150px" class="inputxt"  value='${zbProductTypeHPage.code}'>
+		      <span class="Validform_checktip"></span>
+		    </div>
+			<div class="form">
+		      <label class="Validform_label">类型名称:</label>
+		     	 <input id="typeName" name="typeName" type="text" style="width: 150px" class="inputxt"  value='${zbProductTypeHPage.typeName}'>
+		      <span class="Validform_checktip"></span>
+		    </div>
+			<div class="form">
+		      <label class="Validform_label">删除标记:</label>
+		     	 <input id="dr" name="dr" type="text" style="width: 150px" class="inputxt"  value='${zbProductTypeHPage.dr}'>
+		      <span class="Validform_checktip"></span>
+		    </div>
+	    </fieldset>
+  </t:formvalid>
+ </body>
+  <script src = "webpage/com/jeecg/product/zbProductTypeH.js"></script>		

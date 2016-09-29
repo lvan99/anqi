@@ -1,0 +1,82 @@
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/context/mytags.jsp"%>
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>产品主分类表</title>
+  <t:base type="jquery,easyui,tools,DatePicker"></t:base>
+  <script type="text/javascript">
+  $(document).ready(function(){
+	$('#tt').tabs({
+	   onSelect:function(title){
+	       $('#tt .panel-body').css('width','auto');
+		}
+	});
+	$(".tabs-wrap").css('width','100%');
+  });
+ </script>
+ </head>
+ <body style="overflow-x: hidden;">
+  <t:formvalid formid="formobj" dialog="true" usePlugin="password" layout="table" tiptype="1" action="zbProductTypeMainController.do?doUpdate" >
+					<input id="id" name="id" type="hidden" value="${zbProductTypeMainPage.id }">
+					<input id="bpmStatus" name="bpmStatus" type="hidden" value="${zbProductTypeMainPage.bpmStatus }">
+					<input id="createName" name="createName" type="hidden" value="${zbProductTypeMainPage.createName }">
+					<input id="createBy" name="createBy" type="hidden" value="${zbProductTypeMainPage.createBy }">
+					<input id="updateName" name="updateName" type="hidden" value="${zbProductTypeMainPage.updateName }">
+					<input id="updateBy" name="updateBy" type="hidden" value="${zbProductTypeMainPage.updateBy }">
+					<input id="sysOrgCode" name="sysOrgCode" type="hidden" value="${zbProductTypeMainPage.sysOrgCode }">
+					<input id="sysCompanyCode" name="sysCompanyCode" type="hidden" value="${zbProductTypeMainPage.sysCompanyCode }">
+					<input id="createDate" name="createDate" type="hidden" value="${zbProductTypeMainPage.createDate }">
+					<input id="updateDate" name="updateDate" type="hidden" value="${zbProductTypeMainPage.updateDate }">
+					<input id="dr" name="dr" type="hidden" value="${zbProductTypeMainPage.dr }">
+	<table cellpadding="0" cellspacing="1" class="formtable">
+		<tr>
+			<td align="right">
+				<label class="Validform_label">主类别编码:</label>
+			</td>
+			<td class="value">
+		     	 <input id="code" name="code" type="text" style="width: 150px" class="inputxt" value='${zbProductTypeMainPage.code}'>
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">主类别编码</label>
+			</td>
+			<td align="right">
+				<label class="Validform_label">主分类名称:</label>
+			</td>
+			<td class="value">
+		     	 <input id="mainTypeName" name="mainTypeName" type="text" style="width: 150px" class="inputxt" value='${zbProductTypeMainPage.mainTypeName}'>
+				<span class="Validform_checktip"></span>
+				<label class="Validform_label" style="display: none;">主分类名称</label>
+			</td>
+		</tr>
+			</table>
+			<div style="width: auto;height: 200px;">
+				<%-- 增加一个div，用于调节页面大小，否则默认太小 --%>
+				<div style="width:800px;height:1px;"></div>
+				<t:tabs id="tt" iframe="false" tabPosition="top" fit="false">
+				 <t:tab href="zbProductTypeMainController.do?zbProductTypeHList&id=${zbProductTypeMainPage.id}" icon="icon-search" title="子分类" id="zbProductTypeH"></t:tab>
+				</t:tabs>
+			</div>
+			</t:formvalid>
+			<!-- 添加 附表明细 模版 -->
+		<table style="display:none">
+		<tbody id="add_zbProductTypeH_table_template">
+			<tr>
+			 <td align="center"><div style="width: 25px;" name="xh"></div></td>
+			 <td align="center"><input style="width:20px;" type="checkbox" name="ck"/></td>
+				  <td align="left">
+					  	<input name="zbProductTypeHList[#index#].code" maxlength="50" 
+					  		type="text" class="inputxt"  style="width:120px;"
+					  		>
+					  <label class="Validform_label" style="display: none;">编码</label>
+				  </td>
+				  <td align="left">
+					  	<input name="zbProductTypeHList[#index#].typeName" maxlength="50" 
+					  		type="text" class="inputxt"  style="width:120px;"
+					  		>
+					  <label class="Validform_label" style="display: none;">类型名称</label>
+				  </td>
+			</tr>
+		 </tbody>
+		</table>
+ </body>
+ <script src = "webpage/com/jeecg/product/zbProductTypeMain.js"></script>	

@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/context/mytags.jsp"%>
+<script type="text/javascript">
+	$('#addZbFaqBtn').linkbutton({   
+	    iconCls: 'icon-add'  
+	});  
+	$('#delZbFaqBtn').linkbutton({   
+	    iconCls: 'icon-remove'  
+	}); 
+	$('#addZbFaqBtn').bind('click', function(){   
+ 		 var tr =  $("#add_zbFaq_table_template tr").clone();
+	 	 $("#add_zbFaq_table").append(tr);
+	 	 resetTrNum('add_zbFaq_table');
+	 	 return false;
+    });  
+	$('#delZbFaqBtn').bind('click', function(){
+      	$("#add_zbFaq_table").find("input:checked").parent().parent().remove();   
+        resetTrNum('add_zbFaq_table'); 
+        return false;
+    }); 
+    $(document).ready(function(){
+    	$(".datagrid-toolbar").parent().css("width","auto");
+    	if(location.href.indexOf("load=detail")!=-1){
+			$(":input").attr("disabled","true");
+			$(".datagrid-toolbar").hide();
+		}
+		//将表格的表头固定
+	    $("#zbFaq_table").createhftable({
+	    	height:'300px',
+			width:'auto',
+			fixFooter:false
+			});
+    });
+</script>
+<div style="padding: 3px; height: 25px;width:auto;" class="datagrid-toolbar">
+	<a id="addZbFaqBtn" href="#">添加</a> <a id="delZbFaqBtn" href="#">删除</a> 
+</div>
+<table border="0" cellpadding="2" cellspacing="0" id="zbFaq_table">
+	<tr bgcolor="#E6E6E6">
+		<td align="center" bgcolor="#EEEEEE" style="width: 25px;">序号</td>
+		<td align="center" bgcolor="#EEEEEE" style="width: 25px;">操作</td>
+				  <td align="left" bgcolor="#EEEEEE" style="width: 126px;">
+						编码
+				  </td>
+				  <td align="left" bgcolor="#EEEEEE" style="width: 126px;">
+						问题标题
+				  </td>
+				  <td align="left" bgcolor="#EEEEEE" style="width: 126px;">
+						常见问题详情
+				  </td>
+	</tr>
+	<tbody id="add_zbFaq_table">
+	<c:if test="${fn:length(zbFaqList)  > 0 }">
+		<c:forEach items="${zbFaqList}" var="poVal" varStatus="stuts">
+			<tr>
+				<td align="center"><div style="width: 25px;" name="xh">${stuts.index+1 }</div></td>
+				<td align="center"><input style="width:20px;"  type="checkbox" name="ck" /></td>
+					<input name="zbFaqList[${stuts.index }].id" type="hidden" value="${poVal.id }"/>
+					<input name="zbFaqList[${stuts.index }].createName" type="hidden" value="${poVal.createName }"/>
+					<input name="zbFaqList[${stuts.index }].createBy" type="hidden" value="${poVal.createBy }"/>
+					<input name="zbFaqList[${stuts.index }].createDate" type="hidden" value="${poVal.createDate }"/>
+					<input name="zbFaqList[${stuts.index }].updateName" type="hidden" value="${poVal.updateName }"/>
+					<input name="zbFaqList[${stuts.index }].updateBy" type="hidden" value="${poVal.updateBy }"/>
+					<input name="zbFaqList[${stuts.index }].updateDate" type="hidden" value="${poVal.updateDate }"/>
+					<input name="zbFaqList[${stuts.index }].sysOrgCode" type="hidden" value="${poVal.sysOrgCode }"/>
+					<input name="zbFaqList[${stuts.index }].sysCompanyCode" type="hidden" value="${poVal.sysCompanyCode }"/>
+					<input name="zbFaqList[${stuts.index }].bpmStatus" type="hidden" value="${poVal.bpmStatus }"/>
+					<input name="zbFaqList[${stuts.index }].pkFaqType" type="hidden" value="${poVal.pkFaqType }"/>
+					<input name="zbFaqList[${stuts.index }].dr" type="hidden" value="${poVal.dr }"/>
+				   <td align="left">
+					  	<input name="zbFaqList[${stuts.index }].code" maxlength="32" 
+					  		type="text" class="inputxt"  style="width:120px;"  value="${poVal.code }">
+					  <label class="Validform_label" style="display: none;">编码</label>
+				   </td>
+				   <td align="left">
+					  	<input name="zbFaqList[${stuts.index }].title" maxlength="100" 
+					  		type="text" class="inputxt"  style="width:120px;"  value="${poVal.title }">
+					  <label class="Validform_label" style="display: none;">问题标题</label>
+				   </td>
+				   <td align="left">
+					       	<input name="zbFaqList[${stuts.index }].faqDetail" maxlength="5000" 
+						  		type="text" class="inputxt"  style="width:120px;"   value="${poVal.faqDetail }">
+					  <label class="Validform_label" style="display: none;">常见问题详情</label>
+				   </td>
+   			</tr>
+		</c:forEach>
+	</c:if>	
+	</tbody>
+</table>
